@@ -1,0 +1,62 @@
+name: Maven
+
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout Git repository
+        uses: actions/checkout@v4.2.2
+
+      # https://github.com/actions/cache
+      - name: Cache Maven
+        uses: actions/cache@v4.2.3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      # https://github.com/stCarolas/setup-maven
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.10
+
+      # https://github.com/actions/setup-java
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4.7.1
+        with:
+          distribution: temurin
+          java-version: 21
+          java-package: jdk
+          architecture: x64
+
+      - name: Configure Git
+        run: git config --global user.name "Github Actions" && git config --global user.email "actions@github.com"
+
+      - name: Make Maven Wrapper executable
+        run: chmod +x mvnw
+
+      # https://github.com/nick-fields/retry
+      - name: Build project
+        uses: nick-invision/retry@v3.0.2
+        with:
+          max_attempts: 2
+          timeout_minutes: 1
+          command: ./mvnw clean install
+
+      # https://github.com/actions/upload-artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: TemplateMaven
+          path: target/TemplateMaven-*.jar
