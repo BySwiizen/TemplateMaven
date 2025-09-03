@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommitsDisabled"
+  ],
+
+  "labels": [
+    "Dependencies",
+    "Renovate"
+  ],
+  "reviewers": [
+    "BySwiizen"
+  ],
+
+  "automerge": true,
+  "rebaseWhen": "conflicted",
+
+  "packageRules": [
+    {
+      "matchPackageNames": ["org.spigotmc:spigot-api"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?-(?<compatibility>.*)$",
+      "enabled": true
+    }
+  ]
+}

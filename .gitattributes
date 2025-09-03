@@ -1,0 +1,8 @@
+* text=AUTO
+
+*.xml text
+*.java text diff=JAVA
+mvnw text eol=LF
+*.bat text eol=CRLF
+
+*.jar binary

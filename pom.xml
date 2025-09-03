@@ -1,0 +1,209 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <name>TemplateMaven</name>
+    <groupId>fr.byswiizen.templatemaven</groupId>
+    <artifactId>TemplateMaven</artifactId>
+    <packaging>jar</packaging>
+    <description>Minecraft plugin template on Maven</description>
+
+    <version>1.0.0</version>
+
+
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <repositories>
+        <!-- Sonatype -->
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+        <!-- JitPack -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <!-- SpigotMC -->
+        <repository>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
+        </repository>
+        <!-- FoliaLib -->
+        <repository>
+            <id>tcoded-releases</id>
+            <url>https://repo.tcoded.com/releases</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- https://github.com/JetBrains/java-annotations -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://github.com/google/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.16.0</version>
+        </dependency>
+        <!-- https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.21.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://github.com/TechnicallyCoded/FoliaLib -->
+        <dependency>
+            <groupId>com.tcoded</groupId>
+            <artifactId>FoliaLib</artifactId>
+            <version>0.5.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://github.com/dejvokep/boosted-yaml -->
+        <dependency>
+            <groupId>dev.dejvokep</groupId>
+            <artifactId>boosted-yaml</artifactId>
+            <version>1.3.7</version>
+        </dependency>
+        <!-- https://github.com/KyoriPowered/adventure -->
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-api</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-text-minimessage</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-text-serializer-legacy</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+        <!-- https://github.com/KyoriPowered/adventure-platform -->
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-platform-bukkit</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <!-- https://github.com/Revxrsal/Lamp -->
+        <dependency>
+            <groupId>com.github.Revxrsal.Lamp</groupId>
+            <artifactId>common</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Revxrsal.Lamp</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+        <!-- https://github.com/Bastian/bstats-metrics -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-wrapper-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-wrapper-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <distributionType>bin</distributionType>
+                </configuration>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.jetbrains.annotations</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.annotations</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.google.gson</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.gson</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.commonslang3</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.tcoded.folialib</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.folialib</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>dev.dejvokep.boostedyaml</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.boostedyaml</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>fr.byswiizen.templatemaven.libs.metrics</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

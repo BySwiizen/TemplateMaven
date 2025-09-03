@@ -1,0 +1,21 @@
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}
+description: ${project.description}
+author: BySwiizen
+
+version: ${project.version}
+api-version: 1.13
+
+
+folia-supported: true
+load: POSTWORLD
+
+
+commands:
+  templatemaven:
+    description: Main command of TemplateMaven
+    usage: /<command> [help|reload]
+permissions:
+  templatemaven.reload:
+    description: Reload permission of TemplateMaven
+    default: op
