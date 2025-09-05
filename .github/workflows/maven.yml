@@ -28,8 +28,6 @@ jobs:
       # https://github.com/stCarolas/setup-maven
       - name: Setup Maven
         uses: stCarolas/setup-maven@v5
-        with:
-          maven-version: 3.9.10
 
       # https://github.com/actions/setup-java
       - name: Setup JDK 21
