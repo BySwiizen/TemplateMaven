@@ -15,6 +15,7 @@ public class JoinListener implements Listener {
 		this.plugin = instance;
 	}
 
+
 	@EventHandler
     public void onJoin(PlayerJoinEvent event) {
         if (TemplateMaven.configfile.getBoolean("join.enabled")) {
