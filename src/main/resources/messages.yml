@@ -1,8 +1,8 @@
-join: <bold><dark_green>File working.
+join: '&2&lFile working.'
 
 command:
-  prefix: <gold>TemplateMaven <gray>»
-  reload-success: <green>The configuration files have been reloaded.
+  prefix: '&6TemplateMaven &7»'
+  reload-success: '&aThe configuration files have been reloaded.'
   help:
-    - <yellow>/templatemaven reload <black>- <white>Reloads the plugin configuration files.
-    - <yellow>/templatemaven help <black>- <white>Displays the help command.
+    - '&e/templatemaven reload &0- &fReloads the plugin configuration files.'
+    - '&e/templatemaven help &0- &fDisplays the help command.'

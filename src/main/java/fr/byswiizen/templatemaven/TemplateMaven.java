@@ -24,9 +24,9 @@ public class TemplateMaven extends JavaPlugin {
 		registerMetrics();
 		registerFiles();
 		registerListener();
-		registerSubCommands();
+		registerCommand();
 		getLogger().info("-----------------------");
-		getLogger().info(this.getName() + " v" + this.getDescription().getVersion());
+		getLogger().info(getName() + " v" + getDescription().getVersion());
 		getLogger().info("The plugin is enabled.");
 		getLogger().info("-----------------------");
 	}
@@ -34,7 +34,7 @@ public class TemplateMaven extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		getLogger().info("------------------------");
-		getLogger().info(this.getName() + " v" + this.getDescription().getVersion());
+		getLogger().info(getName() + " v" + getDescription().getVersion());
 		getLogger().info("The plugin is disabled.");
 		getLogger().info("------------------------");
 	}
@@ -61,9 +61,8 @@ public class TemplateMaven extends JavaPlugin {
 		pluginmanager.registerEvents(new JoinListener(this), this);
 	}
 
-	private void registerSubCommands() {
+	private void registerCommand() {
 		BukkitCommandHandler handler = BukkitCommandHandler.create(this);
-		handler.enableAdventure();
 		handler.register(new MainCommand(this));
 		handler.register(new HelpSubCommand(this));
 		handler.register(new ReloadSubCommand(this));
