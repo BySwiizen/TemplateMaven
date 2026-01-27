@@ -12,6 +12,8 @@ jobs:
 
     runs-on: ubuntu-24.04
 
+    if: github.actor != 'dependabot[bot]'
+
     steps:
       # https://github.com/kentaro-m/auto-assign-action
       - name: Auto Assign
