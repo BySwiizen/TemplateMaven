@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <description>Minecraft plugin template on Maven</description>
 
-    <version>2.0.0</version>
+    <version>2.0.1</version>
 
 
     <properties>
