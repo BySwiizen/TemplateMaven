@@ -2,9 +2,9 @@ package fr.byswiizen.templatemaven.command.subcommands;
 
 import fr.byswiizen.templatemaven.TemplateMaven;
 import fr.byswiizen.templatemaven.util.ColorUtil;
+import org.bukkit.command.CommandSender;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Subcommand;
-import revxrsal.commands.bukkit.BukkitCommandActor;
 
 
 @Command("templatemaven")
@@ -17,9 +17,9 @@ public class HelpSubCommand {
 
 
     @Subcommand("help")
-    public void help(BukkitCommandActor sender) {
+    public void help(CommandSender sender) {
 		for (String line : TemplateMaven.messagesfile.getStringList("command.help")) {
-            sender.reply(ColorUtil.translate(TemplateMaven.messagesfile.getString("command.prefix") + " " + line));
+            sender.sendMessage(ColorUtil.translate(TemplateMaven.messagesfile.getString("command.prefix") + " " + line));
         }
 	}
 } 

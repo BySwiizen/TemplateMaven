@@ -2,9 +2,9 @@ package fr.byswiizen.templatemaven.command;
 
 import fr.byswiizen.templatemaven.TemplateMaven;
 import fr.byswiizen.templatemaven.command.subcommands.HelpSubCommand;
+import org.bukkit.command.CommandSender;
 import revxrsal.commands.annotation.Command;
-import revxrsal.commands.annotation.DefaultFor;
-import revxrsal.commands.bukkit.BukkitCommandActor;
+import revxrsal.commands.annotation.CommandPlaceholder;
 
 
 @Command("templatemaven")
@@ -18,8 +18,8 @@ public class MainCommand {
     }
 
 
-    @DefaultFor("templatemaven")
-    public void help(BukkitCommandActor sender) {
+    @CommandPlaceholder
+    public void help(CommandSender sender) {
         helpcommand.help(sender);
     }
 }
